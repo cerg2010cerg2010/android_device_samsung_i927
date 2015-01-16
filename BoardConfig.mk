@@ -48,13 +48,13 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_CMDLINE := mem=511M@0M secmem=1M@511M mem=512M@512M vmalloc=256M fota_boot=false tegra_fbmem=800K@0x18012000 video=tegrafb console=ttyUSB0,115200 console=ram usbcore.old_scheme_first=1 lp0_vec=8192@0x1819E000 emmc_checksum_done=true emmc_checksum_pass=true tegraboot=sdmmc gpt
+BOARD_KERNEL_CMDLINE := mem=511M@0M secmem=1M@511M mem=512M@512M vmalloc=256M fota_boot=false tegra_fbmem=800K@0x18012000 video=tegrafb console=ttyUSB0,115200 console=ram usbcore.old_scheme_first=1 lp0_vec=8192@0x1819E000 emmc_checksum_done=true emmc_checksum_pass=true tegraboot=sdmmc gpt androidboot.selinux=permissive
 KERNEL_MODULES_DIR := /system/lib/modules
 TARGET_KERNEL_SOURCE := kernel/samsung/i927
 TARGET_KERNEL_CONFIG := cyanogenmod_i927_defconfig
 #TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 KERNEL_TOOLCHAIN_PREFIX:= ../../arm-eabi-4.7/bin/arm-eabi-
-#/home/bubor/cm12/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin/arm-eabi-gcc: execv 
+BLOCK_BASED_OTA := false
 
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.n1
 
@@ -86,6 +86,7 @@ endif
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
 BOARD_MOBILEDATA_INTERFACE_NAME := "rmnet0"
+BOARD_RIL_CLASS := ../../../hardware/samsung/ril
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
@@ -203,7 +204,6 @@ HAVE_SELINUX := true
 BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 
 # SElinux
-ifeq ($(HAVE_SELINUX),true)
 BOARD_SEPOLICY_DIRS += \
     $(LOCAL_PATH)/sepolicy
 
@@ -219,7 +219,5 @@ BOARD_SEPOLICY_UNION += \
     surfaceflinger.te \
     sensors_config.te \
     compatibility.te
-
-endif
 
 -include vendor/samsung/i927/BoardConfigVendor.mk
