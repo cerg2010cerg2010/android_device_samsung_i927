@@ -27,19 +27,19 @@ key 50    M
 key 51    COMMA
 key 52    PERIOD
 key 57    SPACE
-key 139   MENU              WAKE_DROPPED
-key 115   VOLUME_UP         WAKE
-key 114   VOLUME_DOWN       WAKE
-key 102   HOME              WAKE
-key 116   POWER             WAKE
-key 105   DPAD_LEFT		    WAKE_DROPPED
-key 106   DPAD_RIGHT		WAKE_DROPPED
-key 103   DPAD_UP		    WAKE_DROPPED
-key 108   DPAD_DOWN         WAKE_DROPPED
-key 352   DPAD_CENTER       WAKE_DROPPED
-key 158   BACK              WAKE_DROPPED
-key 217   SEARCH            WAKE_DROPPED
-key 111   DEL               WAKE_DROPPED
+key 139   MENU             
+key 115   VOLUME_UP         
+key 114   VOLUME_DOWN       
+key 102   HOME              
+key 116   POWER             
+key 105   DPAD_LEFT		  
+key 106   DPAD_RIGHT		
+key 103   DPAD_UP		    
+key 108   DPAD_DOWN         
+key 352   DPAD_CENTER       
+key 158   BACK              
+key 217   SEARCH           
+key 111   DEL              
 key 28    ENTER
 key 42    SHIFT_LEFT
 key 464   ALT_LEFT
