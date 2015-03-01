@@ -30,6 +30,13 @@ PRODUCT_PACKAGES += \
     audio.primary.n1-alsa \
     audio.a2dp.default
 
+
+ifeq ($(BUILD_LIBAUDIO),true)
+PRODUCT_PACKAGES += \
+    audio.primary.n1 \
+    audio.policy.n1 \
+
+endif
 # Set true if you want .odex files
 DISABLE_DEXPREOPT := false
 

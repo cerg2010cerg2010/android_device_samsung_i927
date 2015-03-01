@@ -91,6 +91,7 @@ BOARD_RIL_CLASS := ../../../hardware/samsung/ril
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
 TARGET_PROVIDES_LIBAUDIO := false
+BUILD_LIBAUDIO := true
 
 # Camera
 BOARD_USES_PROPRIETARY_LIBCAMERA := true
