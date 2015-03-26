@@ -1,0 +1,50 @@
+From 9ac3e2b9d7cf9546b7abbb866c615286cf50af56 Mon Sep 17 00:00:00 2001
+From: bubor <bubor@dualhoki.vim.hu>
+Date: Thu, 26 Mar 2015 07:31:29 +0100
+Subject: [PATCH] rild uses tcp socket
+
+Change-Id: I9ad56d281672b3d47ce7e29ba9ae07e1e2976250
+---
+ ril/libsecril-client/secril-client.cpp |   12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/ril/libsecril-client/secril-client.cpp b/ril/libsecril-client/secril-client.cpp
+index 2dcd16b..ee8f15b 100755
+--- a/ril/libsecril-client/secril-client.cpp
++++ b/ril/libsecril-client/secril-client.cpp
+@@ -347,8 +347,8 @@ int Connect_RILD(HRilClient client) {
+     client_prv = (RilClientPrv *)(client->prv);
+ 
+     // Open client socket and connect to server.
+-    //client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
+-    client_prv->sock = socket_local_client(MULTI_CLIENT_SOCKET_NAME, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
++    client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
++    //client_prv->sock = socket_local_client(MULTI_CLIENT_SOCKET_NAME, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
+ 
+     if (client_prv->sock < 0) {
+         ALOGE("%s: Connecting failed. %s(%d)", __FUNCTION__, strerror(errno), errno);
+@@ -411,8 +411,8 @@ int Connect_QRILD(HRilClient client) {
+     client_prv = (RilClientPrv *)(client->prv);
+ 
+     // Open client socket and connect to server.
+-    //client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
+-    client_prv->sock = socket_local_client(MULTI_CLIENT_Q_SOCKET_NAME, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
++    client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
++    //client_prv->sock = socket_local_client(MULTI_CLIENT_Q_SOCKET_NAME, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
+ 
+     if (client_prv->sock < 0) {
+         ALOGE("%s: Connecting failed. %s(%d)", __FUNCTION__, strerror(errno), errno);
+@@ -476,8 +476,8 @@ int Connect_RILD_Second(HRilClient client)    {
+     client_prv = (RilClientPrv *)(client->prv);
+ 
+     // Open client socket and connect to server.
+-    //client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
+-    client_prv->sock = socket_local_client(MULTI_CLIENT_SOCKET_NAME_2, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
++    client_prv->sock = socket_loopback_client(RILD_PORT, SOCK_STREAM);
++    //client_prv->sock = socket_local_client(MULTI_CLIENT_SOCKET_NAME_2, ANDROID_SOCKET_NAMESPACE_ABSTRACT, SOCK_STREAM );
+ 
+     if (client_prv->sock < 0) {
+         ALOGE("%s: Connecting failed. %s(%d)", __FUNCTION__, strerror(errno), errno);
+-- 
+1.7.9.5
+

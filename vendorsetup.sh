@@ -81,6 +81,18 @@ else
        echo "     [FAIL]"
 fi
 
+
+echo "Apply patch to hardware/samsung"
+echo -n "Apply patch 0001-rild-uses-tcp-socket.patch"
+(cd hardware/samsung; git am ../../device/samsung/i927/patches/0001-rild-uses-tcp-socket.patch) > /dev/null 2>&1
+if [ $? == 0 ]; then
+       echo "     [DONE]"
+else
+       (cd hardware/samsung; git am --abort)
+       echo "     [FAIL]"
+fi
+
+
 echo "Apply patch to bionic"
 echo -n "Apply patch 0003-Add-tegra2-to-bionic.patch"
 (cd bionic; git am ../device/samsung/i927/patches/0003-Add-tegra2-to-bionic.patch) > /dev/null 2>&1
