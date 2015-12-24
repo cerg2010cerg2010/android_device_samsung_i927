@@ -93,6 +93,18 @@ else
 fi
 
 
+
+echo "Apply patch to frameworks/base"
+echo -n "Apply patch legacy_startvm.patch"
+(cd frameworks/base; git am ../../device/samsung/i927/patches/legacy_startvm.patch) > /dev/null 2>&1
+if [ $? == 0 ]; then
+    echo "     [DONE]"
+else
+    (cd frameworks/base; git am --abort)
+    echo "     [FAIL]"
+fi
+
+
 echo "Apply patch to bionic"
 echo -n "Apply patch 0003-Add-tegra2-to-bionic.patch"
 (cd bionic; git am ../device/samsung/i927/patches/0003-Add-tegra2-to-bionic.patch) > /dev/null 2>&1
