@@ -166,8 +166,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.board.platform=tegra \
     ro.telephony.sends_barcount=1 \
     ro.com.android.dataroaming=false \
-    dalvik.vm.heapsize=128m \
-    dalvik.vm.growthlimit=64m \
+    ro.sys.fw.bg_apps_limit=27 \
+    ro.config.max_starting_bg=5 \
+    dalvik.vm.lockprof.threshold=500 \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heaptargetutilization=0.50 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=8m \
+    dalvik.vm.heapgrowthlimit=100m \
+    dalvik.vm.heapsize=174m \
+    dalvik.vm.jit.codecachesize=1 \
     persist.service.usb.setting=0 \
     dev.sfbootcomplete=0 
 
@@ -216,7 +224,6 @@ PRODUCT_LOCALES += hdpi
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care

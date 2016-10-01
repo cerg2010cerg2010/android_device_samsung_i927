@@ -222,8 +222,6 @@ on boot
 
 # mute gc alloc/free in logcat (to move in system.prop)
     setprop dalvik.vm.debug.alloc 0
-    setprop dalvik.vm.heapgrowthlimit 72m
-    setprop dalvik.vm.heapstartsize 32m
 
 # GPS
     chown radio system /dev/ttyHS0
