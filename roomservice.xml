@@ -5,5 +5,4 @@
   <project name="LineageOS/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" remote="github" />
   <project name="buborh/kernel_samsung_i927" path="kernel/samsung/i927" remote="github" revision="refs/heads/stock" />
   <project name="buborh/android_vendor_samsung_i927" path="vendor/samsung/i927" remote="github" revision="refs/heads/omni" />
-  <project name="LineageOS/android_vendor_google" path="vendor/google" remote="github" />
 </manifest>
