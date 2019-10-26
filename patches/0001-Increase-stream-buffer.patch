@@ -1,0 +1,29 @@
+From ba7311436c490e5e76c3577de2eaae57c69e8524 Mon Sep 17 00:00:00 2001
+From: Sergey Larin <cerg2010cerg2010@mail.ru>
+Date: Sat, 26 Oct 2019 19:27:07 +0000
+Subject: [PATCH] Increase stream buffer
+
+This is already done in new Android versions. However, since
+Tegra hardware is slow, we need a bit more of it.
+
+Change-Id: Ib55db53953e63a51704d470986ddf436c72ef3dc
+---
+ audio_a2dp_hw/audio_a2dp_hw.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/audio_a2dp_hw/audio_a2dp_hw.h b/audio_a2dp_hw/audio_a2dp_hw.h
+index a983596..0238b9d 100644
+--- a/audio_a2dp_hw/audio_a2dp_hw.h
++++ b/audio_a2dp_hw/audio_a2dp_hw.h
+@@ -48,7 +48,7 @@
+ #endif
+ #define AUDIO_STREAM_DEFAULT_FORMAT        AUDIO_FORMAT_PCM_16_BIT
+ #define AUDIO_STREAM_DEFAULT_CHANNEL_FLAG  AUDIO_CHANNEL_OUT_STEREO
+-#define AUDIO_STREAM_OUTPUT_BUFFER_SZ      (8*512)
++#define AUDIO_STREAM_OUTPUT_BUFFER_SZ      (32*512)
+ #define AUDIO_SKT_DISCONNECTED             (-1)
+ 
+ typedef enum {
+-- 
+1.9.1
+

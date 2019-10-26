@@ -114,3 +114,23 @@ else
     (cd bionic; git am --abort)
     echo "     [FAIL]"
 fi
+
+echo "Apply patch to art"
+echo -n "Apply patch 0001-fix-art-crashes.patch"
+(cd art; git am ../device/samsung/i927/patches/0001-fix-art-crashes.patch) > /dev/null 2>&1
+if [ $? == 0 ]; then
+    echo "     [DONE]"
+else
+    (cd art; git am --abort)
+    echo "     [FAIL]"
+fi
+
+echo "Apply patch to external/bluetooth/bluedroid"
+echo -n "Apply patch 0001-Increase-stream-buffer.patch"
+(cd external/bluetooth/bluedroid; git am ../../../device/samsung/i927/patches/0001-Increase-stream-buffer.patch) > /dev/null 2>&1
+if [ $? == 0 ]; then
+    echo "     [DONE]"
+else
+    (cd external/bluetooth/bluedroid; git am --abort)
+    echo "     [FAIL]"
+fi

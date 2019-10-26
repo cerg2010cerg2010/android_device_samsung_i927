@@ -1,0 +1,52 @@
+From aefb0e73f5a25535bc59d8aa54f2e0d3e6d03646 Mon Sep 17 00:00:00 2001
+From: Sergey Larin <cerg2010cerg2010@mail.ru>
+Date: Sat, 26 Oct 2019 19:21:11 +0000
+Subject: [PATCH] fix art crashes
+
+Change-Id: I8398234206fd60650e3f9619c9bbf03d7a4fbb92
+---
+ compiler/dex/mir_optimization.cc   | 3 +++
+ compiler/dex/ssa_transformation.cc | 6 ++++--
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/compiler/dex/mir_optimization.cc b/compiler/dex/mir_optimization.cc
+index b7611f8..3e56ab0 100644
+--- a/compiler/dex/mir_optimization.cc
++++ b/compiler/dex/mir_optimization.cc
+@@ -40,6 +40,9 @@ void MIRGraph::DoConstantPropogation(BasicBlock* bb) {
+   MIR* mir;
+ 
+   for (mir = bb->first_mir_insn; mir != NULL; mir = mir->next) {
++    if (mir->ssa_rep == NULL)
++      return;
++
+     int df_attributes = oat_data_flow_attributes_[mir->dalvikInsn.opcode];
+ 
+     DecodedInstruction *d_insn = &mir->dalvikInsn;
+diff --git a/compiler/dex/ssa_transformation.cc b/compiler/dex/ssa_transformation.cc
+index cd1602f..bc07a60 100644
+--- a/compiler/dex/ssa_transformation.cc
++++ b/compiler/dex/ssa_transformation.cc
+@@ -598,7 +598,7 @@ bool MIRGraph::InsertPhiNodeOperands(BasicBlock* bb) {
+     GrowableArray<BasicBlock*>::Iterator iter(bb->predecessors);
+     while (true) {
+       BasicBlock* pred_bb = iter.Next();
+-      if (!pred_bb) {
++      if (!pred_bb || !pred_bb->data_flow_info->vreg_to_ssa_map) {
+         break;
+       }
+       int ssa_reg = pred_bb->data_flow_info->vreg_to_ssa_map[v_reg];
+@@ -636,7 +636,9 @@ void MIRGraph::DoDFSPreOrderSSARename(BasicBlock* block) {
+   block->visited = true;
+ 
+   /* Process this block */
+-  DoSSAConversion(block);
++  if (!DoSSAConversion(block))
++    return;
++
+   int map_size = sizeof(int) * cu_->num_dalvik_registers;
+ 
+   /* Save SSA map snapshot */
+-- 
+1.9.1
+
