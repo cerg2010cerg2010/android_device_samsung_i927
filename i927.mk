@@ -54,7 +54,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=180
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -166,16 +165,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.board.platform=tegra \
     ro.telephony.sends_barcount=1 \
     ro.com.android.dataroaming=false \
-    ro.sys.fw.bg_apps_limit=27 \
-    ro.config.max_starting_bg=5 \
-    dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heaptargetutilization=0.50 \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heaptargetutilization=0.25 \
     dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m \
-    dalvik.vm.heapgrowthlimit=100m \
-    dalvik.vm.heapsize=174m \
-    dalvik.vm.jit.codecachesize=1 \
+    dalvik.vm.heapmaxfree=2m \
+    dalvik.vm.heapgrowthlimit=80m \
+    dalvik.vm.heapsize=192m \
     persist.service.usb.setting=0 \
     dev.sfbootcomplete=0 
 
