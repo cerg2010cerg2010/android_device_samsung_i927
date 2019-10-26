@@ -32,6 +32,9 @@ on early-init
     symlink /storage/usbdisk0 /mnt/usbDisk
     symlink /storage/sdcard1 /external_sd
 
+    # NEON emulation, libjaunt.so needs to be in /system/lib
+    export LD_PRELOAD libjaunt.so
+
 on fs
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
     setprop ro.crypto.umount_sd false
