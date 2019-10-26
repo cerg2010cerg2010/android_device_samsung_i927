@@ -57,7 +57,7 @@ echo -n "Apply patch 0001-external-skia-patch.patch"
 if [ $? == 0 ]; then
 	echo "     [DONE]"
 else
-	(cd frameworks/av; git am --abort)
+	(cd external/skia; git am --abort)
 	echo "     [FAIL]"
 fi
 
