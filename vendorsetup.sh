@@ -134,3 +134,13 @@ else
     (cd external/bluetooth/bluedroid; git am --abort)
     echo "     [FAIL]"
 fi
+
+echo "Apply patch to frameworks/base"
+echo -n "Apply patch 0001-Signature-spoofing.patch"
+(cd frameworks/base; git am ../../device/samsung/i927/patches/0001-Signature-spoofing.patch) > /dev/null 2>&1
+if [ $? == 0 ]; then
+    echo "     [DONE]"
+else
+    (cd frameworks/base; git am --abort)
+    echo "     [FAIL]"
+fi
