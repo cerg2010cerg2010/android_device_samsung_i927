@@ -159,6 +159,9 @@ BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 # EMMC brickbug is removed in the kernel, but be better safe than sorry.
 BOARD_SUPPRESS_EMMC_WIPE := true
 
+# This causes heap-corruption crashes in YouTube app
+BOARD_SKIP_CVE_2017_13154 := true
+
 # Recovery
 TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/recovery/init.recovery.n1.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../$(LOCAL_PATH)/recovery/recovery_keys.c
