@@ -127,8 +127,6 @@ chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/nv_hciattach
 ./adb pull /system/lib/libsavsvc.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
 ./adb pull /system/lib/libsthmb.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
 
-./adb pull /system/lib/libstagefrighthw.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-
 # Camera
 ./adb pull /system/cameradata/ ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/cameradata/
 
@@ -295,9 +293,6 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsavsmeta.so:system/lib/libsavsmeta.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsavsvc.so:system/lib/libsavsvc.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsthmb.so:system/lib/libsthmb.so
-
-PRODUCT_COPY_FILES += \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libstagefrighthw.so:system/lib/libstagefrighthw.so
 
 # Camera
 PRODUCT_COPY_FILES += \\
