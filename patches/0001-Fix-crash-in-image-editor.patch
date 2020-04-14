@@ -1,0 +1,27 @@
+From 025b528edf07431a5720901181c3257b55b0843e Mon Sep 17 00:00:00 2001
+From: Sergey Larin <cerg2010cerg2010@mail.ru>
+Date: Sun, 5 Apr 2020 14:37:15 +0000
+Subject: [PATCH] Fix crash in image editor
+
+Sometimes MIME type lookup fails, which results in
+NRE on equals() call.
+---
+ src/com/android/gallery3d/filtershow/tools/SaveImage.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/android/gallery3d/filtershow/tools/SaveImage.java b/src/com/android/gallery3d/filtershow/tools/SaveImage.java
+index 59b97d8..31959fb 100644
+--- a/src/com/android/gallery3d/filtershow/tools/SaveImage.java
++++ b/src/com/android/gallery3d/filtershow/tools/SaveImage.java
+@@ -247,7 +247,7 @@ public class SaveImage {
+         if (mimeType == null) {
+             mimeType = ImageLoader.getMimeType(mSelectedImageUri);
+         }
+-        if (mimeType.equals(ImageLoader.JPEG_MIME_TYPE)) {
++        if (mimeType != null && mimeType.equals(ImageLoader.JPEG_MIME_TYPE)) {
+             InputStream inStream = null;
+             try {
+                 inStream = mContext.getContentResolver().openInputStream(source);
+-- 
+1.9.1
+

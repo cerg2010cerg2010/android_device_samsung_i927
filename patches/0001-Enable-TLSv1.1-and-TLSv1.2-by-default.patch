@@ -1,0 +1,32 @@
+From d46cbc4c8c44f419c2b77b75325e8413365e79a8 Mon Sep 17 00:00:00 2001
+From: Sergey Larin <cerg2010cerg2010@mail.ru>
+Date: Tue, 14 Apr 2020 21:33:19 +0000
+Subject: [PATCH] Enable TLSv1.1 and TLSv1.2 by default
+
+Some apps (like Magisk or Slack) fail to establish an encrypted HTTPS
+connection because modern sites are moved to newer TLSv1.2 protocol.
+These protocols can be enabled with just one line in the code, but
+these monkeys who do this kind of stuff always forget about older OS
+versions.
+
+See https://github.com/LineageOS/android_external_conscrypt/commit/1f63d2c22326b989105366d2907a83b848dcd29e
+---
+ crypto/src/main/java/org/conscrypt/NativeCrypto.java | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/crypto/src/main/java/org/conscrypt/NativeCrypto.java b/crypto/src/main/java/org/conscrypt/NativeCrypto.java
+index 0e96c90..81ea3c1 100644
+--- a/crypto/src/main/java/org/conscrypt/NativeCrypto.java
++++ b/crypto/src/main/java/org/conscrypt/NativeCrypto.java
+@@ -821,6 +821,8 @@ public final class NativeCrypto {
+     public static String[] getDefaultProtocols() {
+         return new String[] { SUPPORTED_PROTOCOL_SSLV3,
+                               SUPPORTED_PROTOCOL_TLSV1,
++                              SUPPORTED_PROTOCOL_TLSV1_1,
++                              SUPPORTED_PROTOCOL_TLSV1_2,
+         };
+     }
+ 
+-- 
+1.9.1
+

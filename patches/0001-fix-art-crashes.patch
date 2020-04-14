@@ -1,13 +1,14 @@
-From aefb0e73f5a25535bc59d8aa54f2e0d3e6d03646 Mon Sep 17 00:00:00 2001
+From bd1cb172f7c8ae23461fdfed673e7f3e6690e9c2 Mon Sep 17 00:00:00 2001
 From: Sergey Larin <cerg2010cerg2010@mail.ru>
 Date: Sat, 26 Oct 2019 19:21:11 +0000
 Subject: [PATCH] fix art crashes
 
 Change-Id: I8398234206fd60650e3f9619c9bbf03d7a4fbb92
 ---
- compiler/dex/mir_optimization.cc   | 3 +++
- compiler/dex/ssa_transformation.cc | 6 ++++--
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ compiler/dex/mir_optimization.cc    | 3 +++
+ compiler/dex/ssa_transformation.cc  | 6 ++++--
+ runtime/verifier/method_verifier.cc | 1 +
+ 3 files changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/compiler/dex/mir_optimization.cc b/compiler/dex/mir_optimization.cc
 index b7611f8..3e56ab0 100644
@@ -47,6 +48,18 @@ index cd1602f..bc07a60 100644
    int map_size = sizeof(int) * cu_->num_dalvik_registers;
  
    /* Save SSA map snapshot */
+diff --git a/runtime/verifier/method_verifier.cc b/runtime/verifier/method_verifier.cc
+index 09fa829..6180967 100644
+--- a/runtime/verifier/method_verifier.cc
++++ b/runtime/verifier/method_verifier.cc
+@@ -2616,6 +2616,7 @@ bool MethodVerifier::CodeFlowVerifyInstruction(uint32_t* start_guess) {
+   } else if (have_pending_runtime_throw_failure_) {
+     /* checking interpreter will throw, mark following code as unreachable */
+     opcode_flags = Instruction::kThrow;
++    have_pending_runtime_throw_failure_ = false;
+   }
+   /*
+    * If we didn't just set the result register, clear it out. This ensures that you can only use
 -- 
 1.9.1
 
