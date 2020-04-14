@@ -146,7 +146,7 @@ PRODUCT_COPY_FILES += \
 
 # QEMU NEON emulator
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/tcg-arm/libjaunt.so:system/lib/libjaunt.so
+    $(LOCAL_PATH)/tcg-arm/libjaunt.so:system/lib/libjaunt.so \
     $(LOCAL_PATH)/tcg-arm/libtcg_arm.so:system/lib/libtcg_arm.so
 
 # Overlay to set device specific parameters
